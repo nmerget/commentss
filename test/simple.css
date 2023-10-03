@@ -1,0 +1,26 @@
+:root {
+  /* This is a test variable inline comment */
+  --variable-inline-comment: 42px;
+  /* This is a test variable 
+   multiline comment */
+  --variable-multiline-comment: 42px;
+
+  /* This is a test variable inline comment with gap */
+
+  --variable-inline-comment-gap: 42px;
+
+  /* This is a test variable
+   multiline comment with gap */
+
+  --variable-multiline-comment-gap: 42px;
+}
+
+/* This is a test class inline selector */
+.test-inline-selector {
+}
+
+/* !!! This comment should be excluded */
+/* This is a test class
+ multiline selector */
+.test-multiline-selector {
+}

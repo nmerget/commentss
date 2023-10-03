@@ -1,0 +1,35 @@
+/* SCSS: This is a test variable inline comment */
+$variable-inline-comment-alone: 42px;
+
+/* SCSS: This is a test variable
+ multiline comment */
+$variable-multiline-comment-alone: 42px;
+
+/* SCSS: This is a test variable inline comment with gap */
+
+$variable-inline-comment-gap: 42px;
+
+/* SCSS: This is a test variable
+ multiline comment with gap */
+
+$variable-multiline-comment-gap: 42px;
+
+/* SCSS: This is a test class inline selector */
+.test-inline-selector {
+}
+
+/* SCSS: This is a test class
+ multiline selector */
+.test-multiline-selector {
+}
+
+/* SCSS: This is a test variable inline comment css-property */
+$variable-inline-comment: var(--variable-inline-comment);
+
+
+$variable-multiline-comment: var(--variable-inline-comment);
+
+/* SCSS: This is a test placeholder comment */
+%test-inline-placeholder {
+  margin: $variable-inline-comment;
+}
