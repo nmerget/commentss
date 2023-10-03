@@ -55,11 +55,13 @@ export const commentss = async (
     }
     FS.writeFileSync(`${outputPath}/${outputFile}.json`, jsonOutput);
     await generateMDFiles(cssOutputs, outputPath, outputFile!);
+    // eslint-disable-next-line no-console
     console.log(`Generated files in '${outputPath}' 🥳`);
     return undefined;
   } else if (test) {
     return cssOutputs;
   } else {
+    // eslint-disable-next-line no-console
     console.log(jsonOutput);
     return undefined;
   }
