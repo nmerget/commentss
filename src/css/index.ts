@@ -1,4 +1,5 @@
-import { parse, Root } from "postcss";
+import { Root } from "postcss";
+import { parse } from "postcss-scss";
 import { CSSCommentResult, CSSOutputType, CSSResultKeyType } from "./data";
 
 const getCommentResults = (

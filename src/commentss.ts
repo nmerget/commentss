@@ -34,15 +34,18 @@ export const commentss = async (
   const cssOutputs: CSSOutputType[] = [];
 
   for (const file of cssFiles) {
-    const fileAsString = file.toString();
-    const readFile = FS.readFileSync(fileAsString).toString();
+    const filePathAsString = file.toString();
+    const readFile = FS.readFileSync(filePathAsString).toString();
 
-    const cssResult = getCssResult(readFile, gapAsNumber);
-
-    cssOutputs.push({
-      file: fileAsString.replace(/\\/g, "/"),
-      ...cssResult,
-    });
+    try {
+      const cssResult = getCssResult(readFile, gapAsNumber);
+      cssOutputs.push({
+        file: filePathAsString.replace(/\\/g, "/"),
+        ...cssResult,
+      });
+    } catch (e) {
+      console.error("Error for file", filePathAsString, "\n", e);
+    }
   }
 
   const jsonOutput = await prettier.format(JSON.stringify(cssOutputs), {
@@ -54,7 +57,9 @@ export const commentss = async (
       FS.mkdirSync(outputPath);
     }
     FS.writeFileSync(`${outputPath}/${outputFile}.json`, jsonOutput);
-    await generateMDFiles(cssOutputs, outputPath, outputFile!);
+    if (cssOutputs.length > 0) {
+      await generateMDFiles(cssOutputs, outputPath, outputFile!);
+    }
     // eslint-disable-next-line no-console
     console.log(`Generated files in '${outputPath}' 🥳`);
     return undefined;
