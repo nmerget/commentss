@@ -2,9 +2,15 @@ import { CSSCommentResult, CSSOutputType } from "../css/data";
 import FS from "node:fs";
 import * as prettier from "prettier";
 
+const getCleanValue = (value: string, replacer: string): string =>
+  value.replace(/\r\n/g, replacer).replace(/\n/g, replacer);
 const getTableRow = (comment: CSSCommentResult): string =>
-  `|${comment.descendant?.type}|\`${comment.descendant
-    ?.key}\`|${comment.comment.text.replace(/\n/g, "<br>")}|\n`;
+  `|${comment.descendant?.type}|\`${getCleanValue(
+    comment.descendant?.key || "",
+    " ",
+  )}\`|${getCleanValue(comment.comment.text, "<br>")}|${
+    comment.comment.endLine
+  }-${comment.descendant?.startLine}|\n`;
 
 export const generateMDFiles = async (
   cssOutputs: CSSOutputType[],
@@ -13,10 +19,12 @@ export const generateMDFiles = async (
 ) => {
   let sortByFile = "# CommentSS - Output\n\n";
 
-  for (const output of cssOutputs) {
+  for (const output of cssOutputs.filter(
+    (output) => output.comments && output.comments?.length > 0,
+  )) {
     sortByFile += `## ${output.file}\n\n`;
-    sortByFile += "|Type|Key|Comment|\n";
-    sortByFile += "|----|---|-------|\n";
+    sortByFile += "|Type|Key|Comment|Line|\n";
+    sortByFile += "|----|---|-------|----|\n";
 
     const decl =
       output.comments?.filter(

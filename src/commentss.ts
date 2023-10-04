@@ -38,7 +38,7 @@ export const commentss = async (
     const readFile = FS.readFileSync(filePathAsString).toString();
 
     try {
-      const cssResult = getCssResult(readFile, gapAsNumber);
+      const cssResult: CSSOutputType = getCssResult(readFile, gapAsNumber);
       cssOutputs.push({
         file: filePathAsString.replace(/\\/g, "/"),
         ...cssResult,
@@ -57,9 +57,7 @@ export const commentss = async (
       FS.mkdirSync(outputPath);
     }
     FS.writeFileSync(`${outputPath}/${outputFile}.json`, jsonOutput);
-    if (cssOutputs.length > 0) {
-      await generateMDFiles(cssOutputs, outputPath, outputFile!);
-    }
+    await generateMDFiles(cssOutputs, outputPath, outputFile!);
     // eslint-disable-next-line no-console
     console.log(`Generated files in '${outputPath}' 🥳`);
     return undefined;

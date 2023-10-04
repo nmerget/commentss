@@ -26,10 +26,20 @@ $variable-multiline-comment-gap: 42px;
 /* SCSS: This is a test variable inline comment css-property */
 $variable-inline-comment: var(--variable-inline-comment);
 
-
 $variable-multiline-comment: var(--variable-inline-comment);
 
 /* SCSS: This is a test placeholder comment */
 %test-inline-placeholder {
   margin: $variable-inline-comment;
+}
+
+// test
+body,
+button,
+input,
+textarea,
+summary,
+select,
+a {
+  color: inherit;
 }
