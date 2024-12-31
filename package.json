@@ -4,7 +4,7 @@
     "commentss": "dist/index.js"
   },
   "dependencies": {
-    "commander": "^12.0.0",
+    "commander": "^13.0.0",
     "glob": "^11.0.0",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.31",
