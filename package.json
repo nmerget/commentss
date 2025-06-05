@@ -22,7 +22,7 @@
     "eslint": "^8.50.0",
     "find-versions-cli": "^5.0.0",
     "jest": "^29.7.0",
-    "prettier-plugin-pkg": "0.19.1",
+    "prettier-plugin-pkg": "0.20.0",
     "ts-jest": "^29.1.1",
     "typescript": "^5.2.2"
   },
